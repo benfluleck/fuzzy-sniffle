@@ -1,0 +1,13 @@
+query {
+  characters(page: 2) {
+    info {
+      count
+      }
+      results {
+        name
+        image
+        id
+        species
+        }
+      }
+    }

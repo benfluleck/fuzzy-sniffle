@@ -22,7 +22,9 @@ module.exports = {
       '<state>': path.resolve(__dirname, 'client/src/state'),
       '<variables>': path.resolve(__dirname, 'client/src/styles/variables'),
       '<api>': path.resolve(__dirname, 'client/src/api'),
-      '<constants>': path.resolve(__dirname, 'client/src/constants')
+      '<constants>': path.resolve(__dirname, 'client/src/constants'),
+      '<graphql>': path.resolve(__dirname, 'client/src/queries')
+
     }
   },
   plugins: [
@@ -52,6 +54,11 @@ module.exports = {
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
+      },
+      {
+        test: /\.(graphql|gql)$/,
+        exclude: /node_modules/,
+        loader: 'graphql-tag/loader'
       }
     ]
   }
