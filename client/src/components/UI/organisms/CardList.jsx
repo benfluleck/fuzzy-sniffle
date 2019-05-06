@@ -4,29 +4,31 @@ import PropTypes from 'prop-types'
 
 import Card from '<molecules>/Card'
 
-const renderCards = (items = []) => (
+const renderCards = (items = [], onClick) => (
   items.map((item, index) => {
     return (<Card
       name={item.name}
       image={item.image}
+      id={item.id}
+      onClick={() => onClick(item)}
       key={index}
     />)
   })
 )
 
-const CardList = ({ items }) => (
+const CardList = ({ items, onClick }) => (
   <CardList.Container>
-    {renderCards(items)}
+    {renderCards(items, onClick)}
   </CardList.Container>
 
 )
 
 CardList.Container = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  grid-row-gap: 30px;
-  grid-column-gap: 30px;
-  padding: 40px;
+  grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
+  grid-row-gap: 2rem;
+  grid-column-gap: 2rem;
+  padding: 4rem;
 `
 
 CardList.propTypes = {
@@ -35,7 +37,8 @@ CardList.propTypes = {
       name: PropTypes.string,
       image: PropTypes.string
     })
-  )
+  ),
+  onClick: PropTypes.func
 }
 
 export default CardList

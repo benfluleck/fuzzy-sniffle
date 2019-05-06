@@ -2,8 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
-const Card = ({ name, image }) => (
-  <Card.Container>
+const Card = ({ name, image, onClick }) => (
+  <Card.Container onClick={onClick}>
     <img style={{ width: '100%' }} src={image} />
     <Card.Content>
       {name}
@@ -29,9 +29,14 @@ Card.Content = styled.div`
   padding: 1rem 1rem 0.5rem;
 `
 
+Card.defaultProps = {
+  onClick: () => {}
+}
+
 Card.propTypes = {
   image: PropTypes.string.isRequired,
-  name: PropTypes.string
+  name: PropTypes.string,
+  onClick: PropTypes.func
 }
 
 export default Card
