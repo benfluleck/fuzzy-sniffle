@@ -1,26 +1,36 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Query } from 'react-apollo'
+import PropTypes from 'prop-types'
 
+import withPageTemplate from '../HOC/withPageTemplate'
 import CardList from '<organisms>/CardList'
 import GET_ALL_CHARACTERS from '<graphql>/pages/Characters.gql'
 
-const CharactersPage = () => {
+function Characters (props) {
+  function handleClick (character) {
+    props.history.push(`/${character.id}`, {
+      character
+    })
+  }
+
   return (
-    <Fragment>
-      <h2>Characters</h2>
-      <Query
-        query={GET_ALL_CHARACTERS}>
-        {
-          ({ data, loading }) => {
-            if (loading) return <div>Loading....</div>
-            return (<CardList
-              items={data.characters.results}
-            />)
-          }
+    <Query
+      query={GET_ALL_CHARACTERS}>
+      {
+        ({ data, loading }) => {
+          if (loading) return <div>Loading....</div>
+          return (<CardList
+            items={data.characters.results}
+            onClick={handleClick}
+          />)
         }
-      </Query>
-    </Fragment>
+      }
+    </Query>
   )
 }
 
-export default CharactersPage
+Characters.propTypes = {
+  history: PropTypes.object
+}
+
+export default withPageTemplate(Characters, 'Characters')

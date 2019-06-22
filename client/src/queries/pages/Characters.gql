@@ -1,8 +1,5 @@
 query {
-  characters(page: 2) {
-    info {
-      count
-      }
+  characters {
       results {
         name
         image
