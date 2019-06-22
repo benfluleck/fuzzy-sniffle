@@ -46,6 +46,9 @@ Page.NavBar = styled.div`
 Page.Content = styled.div`
 ${({ theme: { spacing } }) => `
   grid-area: content;
+  align-items: center;
+  justify-content: center;
+  display: flex;
   padding: ${spacing.sm} ${spacing.mdPlusBase};
 `}`
 
